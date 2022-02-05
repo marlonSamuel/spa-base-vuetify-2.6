@@ -1,28 +1,79 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+<v-app>
+ <v-navigation-drawer app>
+      <v-list-item>
+        <v-list-item-content>
+          <v-list-item-title class="text-h6">
+            Prueba
+          </v-list-item-title>
+          <v-list-item-subtitle>
+            técnica
+          </v-list-item-subtitle>
+        </v-list-item-content>
+      </v-list-item>
+
+      <v-divider></v-divider>
+
+      <v-list
+        dense
+        nav
+      >
+        <v-list-item
+          v-for="item in items"
+          :key="item.title"
+          link
+          :to="item.path"
+        >
+          <v-list-item-icon>
+            <v-icon>{{ item.icon }}</v-icon>
+          </v-list-item-icon>
+
+          <v-list-item-content>
+            <v-list-item-title :to="item.path">{{ item.title }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
+
+  <v-app-bar app color="orange darken-3">
+    <!-- -->
+  </v-app-bar>
+
+  <!-- Sizes your content based upon application components -->
+  <v-main>
+
+    <!-- Provides the application the proper gutter -->
+    <v-container fluid>
+      <!-- If using vue-router -->
+      <router-view></router-view>
+    </v-container>
+  </v-main>
+
+  <v-footer app>
+    <!-- -->
+  </v-footer>
+</v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
   name: 'App',
-  components: {
-    HelloWorld
-  }
-}
-</script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+  components: {
+
+  },
+
+  data: () => ({
+    drawer: null,
+      items: [
+          { title: 'Home', icon: 'mdi-view-dashboard', path:'/' },
+          { title: 'Personas', icon: 'mdi-checkbox-blank-circle', path:'people' }
+        ],
+        right: null,
+  }),
+
+  created(){
+    
+  },
+};
+</script>
